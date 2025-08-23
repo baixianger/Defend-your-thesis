@@ -5,7 +5,7 @@ from typing import List, Optional, Annotated
 from pydantic import BaseModel, Field
 from typing import Literal
 from langgraph.graph import MessagesState
-from langchain.document_loaders import Document
+from langchain_core.documents import Document
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
 
 language_list = ["English", "Danish", "German", "French", "Italian", "Spanish", "Swedish", "Norwegian", "Dutch", "Portuguese", "Russian", "Chinese", "Japanese", "Korean"]
@@ -19,12 +19,15 @@ class AgentState(MessagesState):
 
 class PresentationState(BaseModel):
     thesis: Document = Field(
+        default_factory=lambda: Document(page_content=""),
         description="Thesis document."
     )
     script: str = Field(
+        default="",
         description="Script for the presentation."
     )
     outline: str = Field(
+        default="",
         description="Outline for the slides."
     )
     language: Literal[*language_list] = Field(
