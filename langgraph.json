@@ -1,0 +1,9 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "examiner": "./src/examiners.py:examiner_graph",
+    "examiners": "./src/examiners.py:examiners_graph"
+  },
+  "env": ".env",
+  "image_distro": "wolfi"
+}
