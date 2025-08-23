@@ -1,0 +1,6 @@
+{
+  "python.languageServer": "Pylance",
+  "windsurfPyright.disableLanguageServices": true,
+  "editor.defaultFormatter": "ms-python.python",
+  "notebook.defaultFormatter": "ms-python.python"
+}

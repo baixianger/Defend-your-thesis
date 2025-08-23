@@ -5,6 +5,7 @@ from typing import List, Optional, Annotated
 from pydantic import BaseModel, Field
 from typing import Literal
 from langgraph.graph import MessagesState
+from langchain.document_loaders import Document
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
 
 language_list = ["English", "Danish", "German", "French", "Italian", "Spanish", "Swedish", "Norwegian", "Dutch", "Portuguese", "Russian", "Chinese", "Japanese", "Korean"]
@@ -16,7 +17,25 @@ class InputState(MessagesState):
 class AgentState(MessagesState):
     """Main agent state containing messages and research data."""
 
-
+class PresentationState(BaseModel):
+    thesis: Document = Field(
+        description="Thesis document."
+    )
+    script: str = Field(
+        description="Script for the presentation."
+    )
+    outline: str = Field(
+        description="Outline for the slides."
+    )
+    language: Literal[*language_list] = Field(
+        default="Danish",
+        description="Language to be used in the presentation."
+    )
+    max_time: int = Field(
+        default=15,
+        description="Maximum time for the presentation, in minutes."
+    )
+    
 
 class Examiner(BaseModel):
     name: str = Field(
@@ -60,6 +79,7 @@ class ExaminersState(BaseModel):
         description="Title of the thesis."
     )
     language: Literal[*language_list] = Field(
+        default="Danish",
         description="Language to be used in the thesis and during defense."
     )
     user_inputs: List[str] = Field(

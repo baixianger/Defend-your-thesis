@@ -1,3 +1,8 @@
+import os
+import sys
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
+
+from typing import Literal
 from langchain.chat_models import init_chat_model
 from langchain_core.language_models import BaseChatModel
 from langchain_community.chat_models import ChatTongyi
@@ -6,6 +11,22 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
 import json
+
+def get_record_db_url():
+    """Get the URL of the record database."""
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    db_dir = os.path.join(base_dir, "../data/recordDB")
+    os.makedirs(db_dir, exist_ok=True)
+    db_path = os.path.join(db_dir, "record_manager.db")
+    return f"sqlite:///{db_path}"
+
+
+def get_vector_db_dir() -> str:
+    """Get the directory of the vector database."""
+    return os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        "../data/vectorDB",
+    )
 
 console = Console()
 
