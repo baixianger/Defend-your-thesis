@@ -3,7 +3,10 @@
   "graphs": {
     "examiner": "./src/examiners.py:examiner_graph",
     "examiners": "./src/examiners.py:examiners_graph",
-    "presentation": "./src/presentation.py:presentation_graph"
+    "presentation": "./src/presentation.py:presentation_graph",
+    "Q&A": "./src/interviews.py:query_graph",
+    "interview": "./src/interviews.py:interview_graph",
+    "defend": "./src/agent.py:defend_graph"
   },
   "env": ".env",
   "image_distro": "wolfi"

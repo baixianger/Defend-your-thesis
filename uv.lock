@@ -642,9 +642,11 @@ dependencies = [
     { name = "langchain-google-genai" },
     { name = "langchain-openai" },
     { name = "langchain-pymupdf4llm" },
+    { name = "langchain-tavily" },
     { name = "langgraph" },
     { name = "langsmith" },
     { name = "lxml" },
+    { name = "openai" },
     { name = "protobuf" },
     { name = "pydantic" },
     { name = "python-dotenv" },
@@ -669,10 +671,12 @@ requires-dist = [
     { name = "langchain-community", specifier = ">=0.3.27" },
     { name = "langchain-google-genai", specifier = ">=2.1.8" },
     { name = "langchain-openai", specifier = ">=0.3.28" },
-    { name = "langchain-pymupdf4llm" },
+    { name = "langchain-pymupdf4llm", specifier = ">=0.4.1" },
+    { name = "langchain-tavily", specifier = ">=0.2.11" },
     { name = "langgraph", specifier = ">=0.5.4" },
     { name = "langsmith", specifier = ">=0.4.8" },
     { name = "lxml", specifier = ">=6.0.0" },
+    { name = "openai", specifier = ">=1.101.0" },
     { name = "protobuf", specifier = "==5.29.1" },
     { name = "pydantic", specifier = ">=2.11.7" },
     { name = "python-dotenv", specifier = ">=1.1.1" },
@@ -1708,6 +1712,21 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/d9/74/ddb7fad64abae8fe2a37aa8bec010ccbab72a440a15b9f3d1b93883d00e7/langchain_pymupdf4llm-0.4.1.tar.gz", hash = "sha256:0911a3331b8865df45d2ea98354cf054d20a0c7c1d814bafe75796255ce70427", size = 11093, upload-time = "2025-05-13T02:29:12.33Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/4d/ba/db2452169e06c5092b3f4a29a29d8e6edb0f839de6f2d4e2bffdf9db491d/langchain_pymupdf4llm-0.4.1-py3-none-any.whl", hash = "sha256:16b0834eb0d0c65bf8c2f005901dd7022db6f4f02d09d1076c931724cbedb04c", size = 12072, upload-time = "2025-05-13T02:29:10.759Z" },
+]
+
+[[package]]
+name = "langchain-tavily"
+version = "0.2.11"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "aiohttp" },
+    { name = "langchain" },
+    { name = "langchain-core" },
+    { name = "requests" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/17/bb/63ce4058684dddf525af3c8e5dcfab15c5f17515d20241ef6e726ac9e8b7/langchain_tavily-0.2.11.tar.gz", hash = "sha256:ab4f5d0f7fcb276a3905aef2e38c21a334b6cbfc86b405a3238fdc9c6eae1290", size = 22382, upload-time = "2025-07-25T17:26:33.41Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a8/5a/9326f125b4d3055a96200a5035016efe1aac46149cdafc7182e56710fcfe/langchain_tavily-0.2.11-py3-none-any.whl", hash = "sha256:358317c18fbb26500bca665301450e38945f1f4f6a6f4e06406c7674a76c8d5c", size = 26187, upload-time = "2025-07-25T17:26:32.324Z" },
 ]
 
 [[package]]

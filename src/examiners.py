@@ -7,7 +7,7 @@ from langgraph.graph import START, END, StateGraph
 from langgraph.types import Send, interrupt, Command
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_openai import ChatOpenAI
-from src.states import ExaminerState, ExaminersState, Examiner, ExaminersOutput
+from src.states import ExaminerState, ExaminersState, Examiner
 from src.prompts import persona_prompt_with_input
 
 def create_examiner(state: ExaminerState):
@@ -32,24 +32,25 @@ def create_examiner(state: ExaminerState):
     return {"examiner": cast(Examiner, response)}
 
 
-def human_feedback(state: ExaminerState):
-    print("---human_feedback---")
-    # TODO: implement human feedback in a map-reduce
-    feedback = interrupt("Please provide feedback, if not, leave blank:")
-    return {"human_feedback": feedback}
+# def human_feedback(state: ExaminerState):
+#     print("---human_feedback---")
+#     # TODO: implement human feedback in a map-reduce
+#     feedback = interrupt("Please provide feedback, if not, leave blank:")
+#     return {"human_feedback": feedback}
 
-def should_continue(state: ExaminerState):
-    if state.human_feedback == "":
-        return END
-    return "create_examiner"
+# def should_continue(state: ExaminerState):
+#     if state.human_feedback == "":
+#         return END
+#     return "create_examiner"
 
 
 builder = StateGraph(ExaminerState)
 builder.add_node("create_examiner", create_examiner)
-builder.add_node("human_feedback", human_feedback)
+# builder.add_node("human_feedback", human_feedback)
 builder.add_edge(START, "create_examiner")
-builder.add_edge("create_examiner", "human_feedback")
-builder.add_conditional_edges("human_feedback", should_continue, ["create_examiner", END])
+builder.add_edge("create_examiner", END)
+# builder.add_edge("create_examiner", "human_feedback")
+# builder.add_conditional_edges("human_feedback", should_continue, ["create_examiner", END])
 examiner_graph = builder.compile()
 examiner_graph.name = "ExaminerGenerationGraph"
 
@@ -70,7 +71,7 @@ def create_examiner_in_parallel(state: ExaminersState):
     ]
 
 
-builder = StateGraph(ExaminersState, output_schema=ExaminersOutput)
+builder = StateGraph(ExaminersState)
 builder.add_node("call_examiner_graph", call_examiner_graph)
 builder.add_conditional_edges(START, create_examiner_in_parallel, ["call_examiner_graph"])
 builder.add_edge("call_examiner_graph", END)

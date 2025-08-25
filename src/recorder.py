@@ -8,11 +8,10 @@ from src.utils import get_record_db_url
 
 
 def get_record_manager(
-    collection_name: str,
+    store_id: str,
 ):
     """Get the record manager."""
-    namespace = f"{collection_name}"
     return SQLRecordManager(
-        namespace=namespace,
+        namespace=store_id,
         db_url=get_record_db_url(),
     )

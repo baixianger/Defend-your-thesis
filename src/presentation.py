@@ -11,15 +11,19 @@ from src.states import PresentationState
 
 
 def presentation(state: PresentationState):
-    state.thesis = get_document()
+    thesis = get_document(thesis_path=state.thesis_path)
     model = ChatOpenAI(model_name="gpt-4o-mini", temperature=0.2)
     chain = presentation_prompt | model
     response = chain.invoke({
         "language": state.language,
         "max_time": state.max_time,
-        "thesis": state.thesis.page_content,
+        "thesis": thesis.page_content,
     })
-    return cast(PresentationState, response)
+    result = {
+        "script": response.get("script", ""),
+        "outline": response.get("outline", ""),
+    }
+    return cast(PresentationState, result)
         
 builder = StateGraph(PresentationState)
 builder.add_node("presentation", presentation)
