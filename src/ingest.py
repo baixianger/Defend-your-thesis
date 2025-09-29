@@ -7,7 +7,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from src.recorder import get_record_manager
 from src.store import get_store, get_document
 
-def ingest(thesis_path: str = "data/BACHELOR_Andreas.pdf", store_id: str = "andreas"):
+def ingest(thesis_path: str = "data/Master_Zhang.pdf", store_id: str = "Zhang"):
     chunk_size = 1000
     chunk_overlap = 100
     text_splitter = RecursiveCharacterTextSplitter(

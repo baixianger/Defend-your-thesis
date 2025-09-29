@@ -173,11 +173,11 @@ class GraphState(BaseModel):
         description="Maximum number of examiners. Applicable only if user doesn't provide user_inputs."
     )
     thesis_path: str = Field(
-        default="data/BACHELOR_Andreas.pdf",
+        default="data/Master_Zhang.pdf",
         description="Path to the thesis document."
     )
     store_id: str = Field(
-        default="andreas",
+        default="Zhang",
         description="Collection name of the vector database."
     )
     max_questions: int = Field(

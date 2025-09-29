@@ -14,7 +14,7 @@ from src.utils import get_vector_db_dir
 
 
 
-def get_document(thesis_path: str = "data/BACHELOR_Andreas.pdf"):
+def get_document(thesis_path: str = "data/Master_Zhang.pdf"):
     loader = PyMuPDF4LLMLoader(file_path=thesis_path, mode="single")
     full_doc = loader.load()[0]
     full_doc.metadata["source"] = thesis_path
